@@ -297,6 +297,7 @@ const handleAddToCart = (product) => {
     </div>
     ))}
 
+
         </div>
  ) :  (
     <CartItem onContinueShopping={handleContinueShopping}/>
