@@ -14,23 +14,22 @@ export const CartSlice = createSlice({
       } else {
         state.items.push({ name, image, cost, quantity: 1 });
       }
-            
     },
-
     removeItem: (state, action) => {
       state.items = state.items.filter(item => item.name !== action.payload);
     },
-
     updateQuantity: (state, action) => {
-        const { name, quantity } = action.payload;
-        const itemToUpdate = state.items.find(item => item.name === name);
-        if (itemToUpdate) {
-            itemToUpdate.quantity = quantity;
-        }    
+      const { name, quantity } = action.payload; // Extract quantity from payload
+      const itemToUpdate = state.items.find(item => item.name === name);
+      if (itemToUpdate) {
+        itemToUpdate.quantity = quantity; // Correctly assign the new quantity
+      }
     },
   },
 });
 
+export const selectTotalQuantity = (state) =>
+    state.cart.items.reduce((total, item) => total + item.quantity, 0);
 
 export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
 
